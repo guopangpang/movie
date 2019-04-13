@@ -1,0 +1,65 @@
+.movieItem{
+    display: flex;
+    margin: 0 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #666666;
+    width: calc(100% - 40px);
+}
+
+.movieItem_image_content{
+    flex: 0 0 5rem;
+    height: 7.5rem;
+    width: 5rem;
+}
+.movieItem_image{
+    height: 7.5rem;
+    width: 5rem;
+}
+
+.movieItem_info{
+    flex: 1;
+    margin: 0.2rem 0 0 0.5rem;
+}
+
+.movie_name{
+
+}
+.movieItem_tag_content{
+    height: 1.3rem;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.movieItem_tag{
+    font-size: 0.8rem;
+}
+.movieItem_dircetor_name_content{
+    height: 1.3rem;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.movieItem_dircetor_name{
+    font-size: 0.8rem;
+}
+.movieItem_casts_name_content{
+    height: 2.6rem;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.movieItem_casts_name{
+    font-size: 0.8rem;
+}
+
+.movieItem_rating{
+    margin: 0.5rem 0 0 0.5rem;
+    flex: 0 0 4rem;
+    font-size: 0.8rem;
+}

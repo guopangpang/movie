@@ -5,43 +5,54 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
 import todoApp from './store/reducer'
 import {
     addTodo,
     toggleTodo,
     setVisibilityFilter,
-    VisibilityFilters
+    VisibilityFilters,
+    MoviePost
 } from './store/action'
 
 import Home from './component/home/home'
 import MovieDetail from './component/movie_detail/movie_detail'
+import MovieList from './container/MovieContainer'
 
-let store = createStore(todoApp);
+const middleware = [ thunk ];
 
-console.log('store', store.getState());
+let store = createStore(
+    todoApp,
+    applyMiddleware(...middleware)
+);
+
 const unsubscribe = store.subscribe(() =>
     console.log(store.getState())
 );
 
 // 发起一系列 action
+store.dispatch(MoviePost()).then((res) => console.log(res,store.getState()));
+
 store.dispatch(addTodo('Learn about actions'));
-store.dispatch(addTodo('Learn about reducers'));
-store.dispatch(addTodo('Learn about store'));
-store.dispatch(toggleTodo(0));
-store.dispatch(toggleTodo(1));
-store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+// store.dispatch(addTodo('Learn about reducers'));
+// store.dispatch(addTodo('Learn about store'));
+// store.dispatch(toggleTodo(0));
+// store.dispatch(toggleTodo(1));
+// store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 
 // 停止监听 state 更新
 unsubscribe();
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Switch>
-            <Route path="/" exact={true} component={Home} />
-            <Route path="/movie_detail" component={MovieDetail} />
-        </Switch>
-    </BrowserRouter>,
+    <Provider store={store}>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact={true} component={MovieList} />
+                <Route path="/movie_detail" component={MovieDetail} />
+            </Switch>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

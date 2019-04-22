@@ -1,6 +1,7 @@
 /*
  * action 类型
  */
+import http from '../../http/http'
 
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
@@ -30,4 +31,12 @@ export function toggleTodo(index) {
 
 export function setVisibilityFilter(filter) {
     return { type: SET_VISIBILITY_FILTER, filter }
+}
+
+export function MoviePost(){
+    return dispatch  => {
+        return http.post('/v2/movie/top250111')
+            .then(response => console.log('response',response))
+            .catch(json => console.log('json',json))
+    }
 }

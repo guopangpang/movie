@@ -12,9 +12,6 @@ class movieItem extends Component{
             item:this.props.movie_item
         }
     }
-    componentWillMount(){
-
-    }
     handlerDetail = () =>{
         this.props.history.push('/movie_detail')
     };

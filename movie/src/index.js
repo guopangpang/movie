@@ -7,32 +7,33 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
-import todoApp from './store/reducer'
+import stores from './store/store'
 import {
     addTodo,
-    toggleTodo,
     setVisibilityFilter,
     VisibilityFilters,
     MoviePost
-} from './store/action'
+} from './store/actions/action'
 
-import Home from './component/home/home'
+import {MovieRost} from './store/actions/get_movie_list'
+
 import MovieDetail from './component/movie_detail/movie_detail'
 import MovieList from './container/MovieContainer'
 
 const middleware = [ thunk ];
 
 let store = createStore(
-    todoApp,
+    stores,
     applyMiddleware(...middleware)
 );
 
-const unsubscribe = store.subscribe(() =>
-    console.log(store.getState())
-);
+// const unsubscribe = store.subscribe(() =>
+//     console.log(store.getState())
+// );
 
 // 发起一系列 action
-store.dispatch(MoviePost()).then((res) => console.log(res,store.getState()));
+// store.dispatch(MoviePost()).then((res) => console.log(res,store.getState()));
+// store.dispatch(MovieRost('start')).then((res) => console.log('MovieRost',store.getState()));
 
 store.dispatch(addTodo('Learn about actions'));
 // store.dispatch(addTodo('Learn about reducers'));
@@ -42,7 +43,7 @@ store.dispatch(addTodo('Learn about actions'));
 // store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 
 // 停止监听 state 更新
-unsubscribe();
+// unsubscribe();
 
 ReactDOM.render(
     <Provider store={store}>

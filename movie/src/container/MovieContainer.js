@@ -2,14 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { start_point,count, MovieRost } from '../store/actions/get_movie_list'
 import Home from '../component/home/home'
-import movie_list from "../store/reducers/movie_list";
 
 const mapStateToProps = (state, ownProps) => {
     console.log('state:',state);
     return {
         movie_list:state.movie_list
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {

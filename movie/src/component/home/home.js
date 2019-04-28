@@ -18,9 +18,11 @@ class Home extends Component{
 
     }
     componentDidMount(){
-        this.get_data(this.state.num_start_point).then(()=>{
-            this.props.get_movie_list(this.props.movie_list.start_point,this.props.movie_list.count);
-        });
+        if(this.props.movie_list.start === ''){
+            this.get_data(this.state.num_start_point).then(()=>{
+                this.props.get_movie_list(this.props.movie_list.start_point,this.props.movie_list.count);
+            });
+        }
     }
     handlerScroll = () =>{
         if((this.state.movielist_body.scrollHeight - this.state.movielist_body.offsetHeight - this.state.movielist_body.scrollTop)<100){
